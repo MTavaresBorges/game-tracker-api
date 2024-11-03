@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('release_date');
             $table->string('platform');
             $table->string('developer');
+            $table->string('publisher');
             $table->timestamps();
         });
     }

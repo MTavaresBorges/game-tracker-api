@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('game_id')->constrained('games')->onDelete('cascade');
+            $table->string('title');
             $table->text('content');
             $table->text('image')->nullable();
             $table->enum('visibility', ['public', 'private', 'unlisted'])->default('public');
