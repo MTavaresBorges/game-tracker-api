@@ -31,6 +31,13 @@ class StoreUserRequest extends FormRequest
             'email' => ['email', 'required', 'unique:users'],
             'avatar' => ['string', 'nullable'],
             'birthdate' => ['date', 'nullable'],
+            'address.zipcode' => ['string', 'required'],
+            'address.street' => ['string', 'required'],
+            'address.number' => ['string', 'required'],
+            'address.neighborhood' => ['string', 'required'],
+            'address.city' => ['string', 'required'],
+            'address.state' => ['string', 'required'],
+            'address.state_id' => ['required', 'exists:states,id'],
         ];
     }
 

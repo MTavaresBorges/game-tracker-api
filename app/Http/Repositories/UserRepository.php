@@ -3,6 +3,8 @@
 namespace App\Http\Repositories;
 
 use App\Models\User;
+use App\Models\Address;
+use Illuminate\Support\Facades\DB;
 
 class UserRepository
 {
@@ -18,7 +20,10 @@ class UserRepository
 
     public function create($data)
     {
-        return User::create($data);
+        return DB::transaction(function () use ($data) {
+            $user = User::create($data);
+            $user->addresses()->create($data['address']);
+        });
     }
     
     public function delete(User $user)
