@@ -23,6 +23,12 @@ class UserRepository
         return DB::transaction(function () use ($data) {
             $user = User::create($data);
             $user->addresses()->create($data['address']);
+            $user->libraries()->create([
+                'user_id' => $user->id,
+                'name' => 'Beaten Games',
+                'description' =>  'A collection of games I have beaten',
+                'is_main' => true,
+            ]);
         });
     }
     

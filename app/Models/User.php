@@ -50,10 +50,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
-    public function games(): HasMany
+
+    public function libraries(): HasMany
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Library::class);
     }
 
     public function friends(): HasMany
@@ -75,4 +75,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+
 }
