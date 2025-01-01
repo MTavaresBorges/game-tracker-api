@@ -8,26 +8,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Game extends Model
 {
     protected $fillable = [
-        'title',
+        'name',
         'release_date',
-        'platform',
-        'developer',
-        'publisher',
+        'score',
+        'age_rating',
+        'description'
     ];
 
-    public function users(): BelongsToMany
+    public function genres(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Genre::class);
     }
 
-    public function categories(): BelongsToMany
+    public function platforms(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Platform::class);
     }
 
-    public function tags(): BelongsToMany
+    public function companies(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Company::class);
     }
 
     public function reviews(): BelongsToMany

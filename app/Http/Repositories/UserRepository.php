@@ -3,7 +3,6 @@
 namespace App\Http\Repositories;
 
 use App\Models\User;
-use App\Models\Address;
 use Illuminate\Support\Facades\DB;
 
 class UserRepository

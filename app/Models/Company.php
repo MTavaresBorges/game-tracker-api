@@ -3,15 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Category extends Model
+class Company extends Model
 {
+    protected $table = 'companies';
+
     protected $fillable = [
-        'name'
+        'name', 
+        'type'
     ];
 
-    public function games(): BelongsToMany
+    public function games()
     {
         return $this->belongsToMany(Game::class);
     }

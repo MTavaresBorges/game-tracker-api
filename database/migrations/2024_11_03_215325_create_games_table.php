@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('release_date');
-            $table->string('platform');
-            $table->string('developer');
-            $table->string('publisher');
+            $table->double('score');
+            $table->string('age_rating');
+            $table->text('description');
             $table->timestamps();
         });
     }

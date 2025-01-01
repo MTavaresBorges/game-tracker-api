@@ -14,8 +14,8 @@ class GameImage extends Model
         'order',
     ];
 
-    public function game(): BelongsTo
+    public function game()
     {
-        return $this->belongsTo(Game::class);
+        return $this->hasOne(Game::class);
     }
 }
