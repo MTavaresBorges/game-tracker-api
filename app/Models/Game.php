@@ -20,6 +20,11 @@ class Game extends Model
         return $this->belongsToMany(Genre::class);
     }
 
+    public function libraries(): BelongsToMany
+    {
+        return $this->belongsToMany(Library::class);
+    }
+
     public function platforms(): BelongsToMany
     {
         return $this->belongsToMany(Platform::class);
