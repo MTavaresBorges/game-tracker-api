@@ -13,9 +13,7 @@ class GameController extends Controller
     }
 
     public function store(Request $request){
-        $game = $this->gameService->create($request->all());
+        $game = $this->gameService->createGameWithRelations($request->all());
         return response()->json($game, 201);
-
-        // return $request->all();
     }
 }

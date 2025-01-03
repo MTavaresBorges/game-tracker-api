@@ -13,4 +13,9 @@ class LibraryRepository
     {
         return Library::all();
     }
+
+    public function findMain()
+    {
+        return Library::where('is_main', 1)->where('user_id', auth()->user()->id)->first();
+    }
 }

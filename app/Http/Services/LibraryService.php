@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Models\Library;
 use App\Http\Repositories\LibraryRepository;
 
 
