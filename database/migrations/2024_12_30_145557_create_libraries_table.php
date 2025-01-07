@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('is_main');
+            $table->enum('visibility', ['public', 'private', 'unlisted'])->default('public');
+            $table->boolean('is_main')->default(false);
+            $table->string('img_path')->nullable();
             $table->timestamps();
         });
     }

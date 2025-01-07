@@ -28,6 +28,8 @@ class UserRepository
                 'description' =>  'A collection of games I have beaten',
                 'is_main' => true,
             ]);
+
+            return response()->json($user, 201);
         });
     }
     
