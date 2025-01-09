@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLibraryRequest;
-use App\Http\Services\LibraryService;
+use App\Models\Library;
 use Illuminate\Http\Request;
+use App\Http\Services\LibraryService;
+use App\Http\Requests\StoreLibraryRequest;
 
 class LibraryController extends Controller
 {
@@ -18,5 +19,17 @@ class LibraryController extends Controller
     {
         $library = $this->libraryService->create($request->validated(), $request->file('file'));
         return response()->json($library, 201);
+    }
+
+    public function index()
+    {
+        $libraries = $this->libraryService->getAllByUser();
+        return response()->json($libraries, 200);
+    }
+
+    public function destroy($id)
+    {
+        $library = $this->libraryService->delete($id);
+        return response()->json($library, 200);
     }
 }
