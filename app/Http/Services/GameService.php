@@ -85,4 +85,9 @@ class GameService
         }
         $game->platforms()->sync($platformIds);
     }
+
+    public function deleteGameAttachment($id) {
+        $game = Game::find($id);
+        $game->libraries()->detach();
+    }
 }

@@ -27,6 +27,12 @@ class LibraryController extends Controller
         return response()->json($libraries, 200);
     }
 
+    public function show($id)
+    {
+        $library = $this->libraryService->getById($id);
+        return response()->json($library, 200);
+    }
+
     public function destroy($id)
     {
         $library = $this->libraryService->delete($id);

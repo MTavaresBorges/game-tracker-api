@@ -16,4 +16,9 @@ class GameController extends Controller
         $game = $this->gameService->createGameWithRelations($request->all());
         return response()->json($game, 201);
     }
+
+    public function destroy($id){
+        $this->gameService->deleteGameAttachment($id);
+        return response()->json($id, 200);
+    }
 }

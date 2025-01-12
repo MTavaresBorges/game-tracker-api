@@ -32,6 +32,10 @@ class LibraryService
         return Library::with('games')->where('user_id', auth()->user()->id)->get();
     }
 
+    public function getById($id){
+        return Library::with('games')->where('id', $id)->first();
+    }
+
     public function delete($id){
         $library = Library::where('id', $id)->delete();
         return response()->json($library, 200);
