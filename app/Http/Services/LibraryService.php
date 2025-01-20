@@ -36,6 +36,12 @@ class LibraryService
         return Library::with('games')->where('id', $id)->first();
     }
 
+    public function update($id, array $data){
+        $library = Library::where('id', $id)->update($data);
+        
+        return $library;
+    }
+
     public function delete($id){
         $library = Library::where('id', $id)->delete();
         return response()->json($library, 200);
