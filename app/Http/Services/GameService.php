@@ -11,22 +11,25 @@ use App\Models\GameImage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Repositories\GameRepository;
 use App\Http\Repositories\LibraryRepository;
+use App\Http\Services\LibraryService;
 
 class GameService
 {
     protected $gameRepository;
     protected $libraryRepository;
-    public function __construct(GameRepository $gameRepository, LibraryRepository $libraryRepository)
+    protected $libraryService;
+    public function __construct(GameRepository $gameRepository, LibraryRepository $libraryRepository, LibraryService $libraryService)
     {
         $this->gameRepository = $gameRepository;
         $this->libraryRepository = $libraryRepository;
+        $this->libraryService = $libraryService;
     }
     
     public function createGameWithRelations(array $data) {
         if($data['pivot']['isMain'] === 1){
             $library = $this->libraryRepository->findMain();
         }else{
-
+            $library = $this->libraryService->getById($data['pivot']['library_id']);
         }
         return DB::transaction(function () use ($data, $library) {
             $game = $this->gameRepository->updateOrCreate($data['game']);
