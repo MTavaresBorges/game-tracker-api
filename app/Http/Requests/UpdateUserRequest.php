@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonResponse;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -27,9 +28,8 @@ class UpdateUserRequest extends FormRequest
         return [
             'fullname' => ['string', 'required'],
             'nickname' => ['string', 'required'],
-            'password' => ['string', 'nullable', 'min:6'],
-            'email' => ['email', 'required', 'unique:users'],
-            'avatar' => ['string', 'nullable'],
+            'email' => ['email', 'required', Rule::unique('users')->ignore($this->user()->id)],
+            // 'avatar' => ['string', 'nullable'],
             'birthdate' => ['date', 'nullable'],
         ];
     }
