@@ -17,8 +17,8 @@ class GameController extends Controller
         return response()->json($game, 201);
     }
 
-    public function destroy($id){
-        $this->gameService->deleteGameAttachment($id);
-        return response()->json($id, 200);
+    public function destroy($gameId, $libraryId){
+        $this->gameService->deleteGameAttachment($gameId, $libraryId);
+        return response()->json($gameId, 200);
     }
 }

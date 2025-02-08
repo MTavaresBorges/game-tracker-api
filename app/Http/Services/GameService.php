@@ -39,7 +39,7 @@ class GameService
     }
 
     protected function syncRelations(Game $game, array $data, Library $library) {
-        $game->libraries()->sync([
+        $game->libraries()->attach([
             $library->id => [
                 'status' => $data['pivot']['status'],
                 'beaten_at' => $data['pivot']['beaten_at'],
@@ -89,8 +89,12 @@ class GameService
         $game->platforms()->sync($platformIds);
     }
 
-    public function deleteGameAttachment($id) {
-        $game = Game::find($id);
-        $game->libraries()->detach();
+    public function deleteGameAttachment($gameId, $libraryId) {
+        $library = Library::find($libraryId);
+        $game = Game::find($gameId);
+        
+        $library->games()->detach($game);
+
+        return response()->json($game, 200);
     }
 }

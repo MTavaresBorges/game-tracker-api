@@ -22,6 +22,7 @@ Route::middleware([CorsMiddleware::class])->group(function () {
             Route::put('/{id}', 'update');
         });
         Route::apiResource('/games', GameController::class);
+        Route::delete('/games/{gameId}/library/{libraryId}', [GameController::class,'destroy']);
         Route::apiResource('/libraries', LibraryController::class);
         Route::post('/logout', [AuthController::class,'logout']);
     });

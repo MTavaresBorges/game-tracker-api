@@ -33,7 +33,7 @@ class LibraryService
     }
 
     public function getById($id){
-        return Library::with('games')->where('id', $id)->first();
+        return Library::with('games.libraries')->where('id', $id)->first();
     }
 
     public function update($id, array $data){

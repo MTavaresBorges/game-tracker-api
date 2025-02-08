@@ -22,7 +22,8 @@ class Game extends Model
 
     public function libraries(): BelongsToMany
     {
-        return $this->belongsToMany(Library::class);
+        return $this->belongsToMany(Library::class, 'game_library')
+            ->withPivot('beaten_at', 'status');
     }
 
     public function platforms(): BelongsToMany
